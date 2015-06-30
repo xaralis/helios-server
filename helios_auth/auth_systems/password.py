@@ -16,11 +16,14 @@ STATUS_UPDATES = False
 
 def create_user(username, password, name = None):
   from helios_auth.models import User
-  
-  user = User.get_by_type_and_id('password', username)
-  if user:
+  from django.db import models
+
+  try:
+    user = User.get_by_type_and_id('password', username)
     raise Exception('user exists')
-  
+  except User.DoesNotExist:
+    pass
+
   info = {'password' : password, 'name': name}
   user = User.update_or_create(user_type='password', user_id=username, info = info)
   user.save()
