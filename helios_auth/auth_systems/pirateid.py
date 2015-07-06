@@ -58,7 +58,7 @@ def send_message(user_id, user_name, user_info, subject, body):
   """
   send email to yahoo user, user_id is email for yahoo and other openID logins.
   """
-  send_mail(subject, body, settings.SERVER_EMAIL, ["%s <%s>" % (user_name, user_id)], fail_silently=False)
+  send_mail(subject, body, settings.SERVER_EMAIL, ["%s <%s@pirati.cz>" % (user_name, user_id)], fail_silently=False)
   
 def generate_constraint(category_id, user):
   return category_id
