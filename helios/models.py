@@ -436,7 +436,40 @@ class Election(HeliosModel):
   def increment_cast_votes(self):
     ## FIXME
     return 0
-        
+
+  def load_eligible_voters(self):
+    """
+    try to load voters by eligibility constraints
+    """
+
+    if self.eligibility == None:
+      return
+
+    if self.openreg == False:
+      return
+
+    total_load = True
+
+    for eligibility_case in self.eligibility:
+      print eligibility_case
+      auth_system = eligibility_case['auth_system']
+
+      if not eligibility_case.has_key('constraint'):
+        total_load = False
+      else:
+        if hasattr(AUTH_SYSTEMS[auth_system], 'can_list_category_members'):
+          for constraint in eligibility_case['constraint']:
+            category_id = AUTH_SYSTEMS[auth_system].eligibility_category_id(constraint)
+            for u in AUTH_SYSTEMS[auth_system].list_category_members(category_id):
+              user = User.update_or_create(user_type = u['type'], user_id = u['id'], name = u['name'], info = u['info'], token = u['token'])
+              Voter.register_user_in_election(user, self)
+        else:
+          total_load = False
+
+    if total_load:
+      self.openreg = False
+
+
   def set_eligibility(self):
     """
     if registration is closed and eligibility has not been
@@ -485,7 +518,9 @@ class Election(HeliosModel):
       raise Exception("cannot freeze an election that has issues")
 
     self.frozen_at = datetime.datetime.utcnow()
-    
+
+    self.load_eligible_voters()
+
     # voters hash
     self.generate_voters_hash()
 
