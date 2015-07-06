@@ -76,7 +76,7 @@ MEDIA_URL = ''
 STATIC_URL = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = get_from_env('SECRET_KEY', 'replacemesadfasdfasdf')
+SECRET_KEY = get_from_env('SECRET_KEY', 'replaceme')
 
 # Secure Stuff
 if (get_from_env('SSL', '0') == '1'):
@@ -160,7 +160,7 @@ LOGOUT_ON_CONFIRMATION = True
 
 # The two hosts are here so the main site can be over plain HTTP
 # while the voting URLs are served over SSL.
-URL_HOST = get_from_env("URL_HOST", "http://helios-server-lnovy.c9.io").rstrip("/")
+URL_HOST = get_from_env("URL_HOST", "http://localhost:8000").rstrip("/")
 
 # IMPORTANT: you should not change this setting once you've created
 # elections, as your elections' cast_url will then be incorrect.
