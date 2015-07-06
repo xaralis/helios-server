@@ -40,7 +40,7 @@ def get_consumer(session):
     """
     return consumer.Consumer(session, getOpenIDStore())
 
-def start_openid(session, openid_url, trust_root, return_to):
+def start_openid(session, openid_url, trust_root, return_to, ax_required_fields = AX_REQUIRED_FIELDS):
     """
     Start the OpenID authentication process.
 
@@ -80,7 +80,7 @@ def start_openid(session, openid_url, trust_root, return_to):
     # XXX - uses myOpenID-compatible schema values, which are
     # not those listed at axschema.org.
 
-    for k, v in AX_REQUIRED_FIELDS.iteritems():
+    for k, v in ax_required_fields.iteritems():
         ax_request.add(ax.AttrInfo(v, required=True))
 
     auth_request.addExtension(ax_request)
@@ -95,7 +95,7 @@ def start_openid(session, openid_url, trust_root, return_to):
     url = auth_request.redirectURL(trust_root, return_to)
     return url
 
-def finish_openid(session, request_args, return_to):
+def finish_openid(session, request_args, return_to, ax_required_fields = AX_REQUIRED_FIELDS):
     """
     Finish the OpenID authentication process.  Invoke the OpenID
     library with the response from the OpenID server and render a page
@@ -123,7 +123,7 @@ def finish_openid(session, request_args, return_to):
 
             ax_response = ax.FetchResponse.fromSuccessResponse(response)
             if ax_response:
-                for k, v in AX_REQUIRED_FIELDS.iteritems():
+                for k, v in ax_required_fields.iteritems():
                     """
                     the values are the URIs, they are the key into the data
                     the key is the shortname
