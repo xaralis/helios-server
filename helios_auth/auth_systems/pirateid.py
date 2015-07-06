@@ -1,5 +1,5 @@
 """
-Yahoo Authentication
+PirateID Authentication
 
 """
 
@@ -24,8 +24,6 @@ LOGIN_MESSAGE = "Log in with my PirateID"
 OPENID_ENDPOINT = 'https://openid.pirati.cz'
 
 AX_REQUIRED_FIELDS = {
-    'firstname' : 'http://axschema.org/namePerson/first',
-    'lastname' : 'http://axschema.org/namePerson/last',
     'fullname' : 'http://axschema.org/namePerson',
     'email' : 'http://axschema.org/contact/email',
     'nickname' : 'http://axschema.org/namePerson/friendly'
@@ -44,7 +42,7 @@ def get_user_info_after_auth(request):
     
 def do_logout(user):
   """
-  logout of Yahoo
+  logout of PirateID
   """
   return None
   
@@ -56,7 +54,7 @@ def update_status(token, message):
 
 def send_message(user_id, user_name, user_info, subject, body):
   """
-  send email to yahoo user, user_id is email for yahoo and other openID logins.
+  send email to pirate user, user_id is combined with the domain to get the email.
   """
   send_mail(subject, body, settings.SERVER_EMAIL, ["%s <%s@pirati.cz>" % (user_name, user_id)], fail_silently=False)
   
@@ -65,8 +63,7 @@ def generate_constraint(category_id, user):
 
 def eligibility_category_id(constraint):
   return constraint
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
+
 def check_constraint(constraint, user):
   """
   for eligibility
@@ -81,17 +78,26 @@ def check_constraint(constraint, user):
 
 def can_list_categories():
   """
-  we will use phpbb groups
+  yep, we can
   """
   return True
 
 def list_categories(user):
   """
-  returns [{id,name},...]
+  list groups from the graph api
   """
-  categories = []
   groups = json.load(urllib2.urlopen("https://graph.pirati.cz/groups"))
-  for group in groups:
-    categories.append({'id': group[u'id'], 'name': group[u'username']})
   
-  return categories
+  return [{'id': group[u'id'], 'name':group[u'username']} for group in groups]
+
+def can_list_category_members():
+  return True
+
+def list_category_members(category_id):
+  members = json.load(urllib2.urlopen("https://graph.pirati.cz/" + category_id + "/members"))
+  users = []
+  for member in members:
+    user = json.load(urllib2.urlopen("https://graph.pirati.cz/" + member[u'id']))
+    users.append({'type': 'pirateid', 'id': user[u'username'], 'name': user[u'fullname'], 'info': {'email': user[u'email']}, 'token': {}})
+
+  return users
