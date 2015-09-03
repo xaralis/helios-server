@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Unit Tests for Helios
 """
@@ -606,8 +607,8 @@ class ElectionBlackboxTests(WebTest):
         assert "your password" in email_message.subject, "bad subject in email"
 
         # get the username and password
-        username = re.search('voter ID: (.*)', email_message.body).group(1)
-        password = re.search('password: (.*)', email_message.body).group(1)
+        username = re.search(u'ID voliče: (.*)', email_message.body).group(1)
+        password = re.search(u'heslo: (.*)', email_message.body).group(1)
 
         # now log out as administrator
         self.clear_login()
@@ -643,7 +644,7 @@ class ElectionBlackboxTests(WebTest):
 
         if need_login:
             if check_user_logged_in:
-                self.assertContains(cast_confirm_page, "You are logged in as")
+                self.assertContains(cast_confirm_page, "Jste přihlášeni jako")
                 self.assertContains(cast_confirm_page, "requires election-specific credentials")
 
             # set the form
@@ -659,7 +660,7 @@ class ElectionBlackboxTests(WebTest):
             # cast_confirm_page = cast_confirm_page.follow()
         else:
             # here we should be at the cast-confirm page and logged in
-            self.assertContains(cast_confirm_page, "CAST this ballot")
+            self.assertContains(cast_confirm_page, u"ODEVZDAT tento lístek")
 
             # confirm the vote, now with the actual form
             cast_form = cast_confirm_page.form
