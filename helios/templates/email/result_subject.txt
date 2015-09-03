@@ -1,1 +1,1 @@
-Tally Released - {{custom_subject|safe}}
+Výsledek zveřejněn - {{custom_subject|safe}}

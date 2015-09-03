@@ -16,16 +16,16 @@
 <br />
 {% endif %}
 
-You are logged in as <u>{{voter.display_html_big|safe}}</u><br /><br />
+Jste přihlášeni jako <u>{{voter.display_html_big|safe}}</u><br /><br />
 
-    <button type="submit" class="large">CAST this ballot</button>
-    <span style="font-size:0.8em;"><br />You can cast as many ballots as you want.<br />Only the last one counts.</span>
+    <button type="submit" class="large">ODEVZDAT tento lístek</button>
+    <span style="font-size:0.8em;"><br />Můžete odevzdat tolik lístků, kolik chcete.<br />Pouze poslední se počítá.</span>
 </form>
 
 <p>
-    <button class="tiny" onclick="document.location='./view';">cancel</button><br />
-    <span style="font-size:0.8em;">If you cancel now, your ballot will <em>NOT</em> be recorded.<br />
-    You can start the voting process over again, of course.</span>
+    <button class="tiny" onclick="document.location='./view';">zrušit</button><br />
+    <span style="font-size:0.8em;">Pokud zrušíte nyní, váš lístek <em>NEBUDE</em> zaznamenán.<br />
+    Samozřejmě můžete proces hlasování zopakovat od začátku.</span>
 </p>
 
 <!-- for now, for CSRF protection, no auto-submit just yet (benadida) -->
@@ -34,11 +34,11 @@ You are logged in as <u>{{voter.display_html_big|safe}}</u><br /><br />
 </div>
   {% else %}
 <p style="font-size:1.4em;">
-  voting has stopped, sorry.
+  Hlasování bylo ukončeno, sorry.
 </p>
   {% endif %}
 {% else %}
 <p style="font-size:1.4em;">
-  voting has not yet begun, sorry.
+  Hlasování ještě nezačalo, sorry.
 </p>
 {% endif %}

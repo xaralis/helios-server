@@ -21,7 +21,7 @@
   </select>
 -->
 <input type="hidden" name="choice_type" value="approval" />
-<b>{$T.question$index + 1}.</b> &nbsp;&nbsp;&nbsp;Select between &nbsp;&nbsp;
+<b>{$T.question$index + 1}.</b> &nbsp;&nbsp;&nbsp;Zvolte mezi &nbsp;&nbsp;
 <select name="min">
     <option selected>0</option>
     <option>1</option>
@@ -46,7 +46,7 @@
     <option>20</option>
 </select>
 
-&nbsp;&nbsp; and  &nbsp;&nbsp;
+&nbsp;&nbsp; a  &nbsp;&nbsp;
 
 <select name="max">
     <option>0</option>
@@ -74,25 +74,25 @@
 </select>
 
 &nbsp;&nbsp;
-answers.
+odpověďmi.
 
 &nbsp;&nbsp;
 &nbsp;&nbsp;
-Result Type:&nbsp;
+Typ výsledku:&nbsp;
 <select name="result_type">
-    <option selected>absolute</option>
-    <option>relative</option>
+    <option selected>absolutní</option>
+    <option>relativní</option>
 </select>
 
 </p>
 
 <table id="answer_table_{$T.question$index}">
   <tbody>
-    <tr><th colspan="2">Question:</th><td><input type="text" name="question" size="70" /></td></tr>
+    <tr><th colspan="2">Otázka:</th><td><input type="text" name="question" size="70" /></td></tr>
     <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
   </tbody>
   <tfoot>
-    <tr><th colspan="2"></th><th><a href="javascript:add_answers($('#answer_table_{$T.question$index}'),5)">add 5 more answers</a></th></tr>
+    <tr><th colspan="2"></th><th><a href="javascript:add_answers($('#answer_table_{$T.question$index}'),5)">přidat 5 dalších odpovědí</a></th></tr>
     <tr><td colspan="3"><input type="submit" value="update question" /> &nbsp; <input type="reset" value="cancel" onclick="question_edit_cancel({$T.question$index});" /></td></tr>
   </tfoot>
 
@@ -100,11 +100,11 @@ Result Type:&nbsp;
 </form>
 </div>
 {#else}
-no questions yet
+zatím řádné otázky
 {#/for}
 
 {#if $T.admin_p}
-<h4>Add a Question:</h4>
+<h4>Přidat otázku:</h4>
 <form id="question_form" onsubmit="question_add(this); return false;" action="#">
 <p>
 <!--
@@ -114,7 +114,7 @@ no questions yet
   </select>
 -->
 <input type="hidden" name="choice_type" value="approval" />
-&nbsp;&nbsp;&nbsp;Select between &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;Zvolte mezi &nbsp;&nbsp;
 <select name="min">
     <option selected>0</option>
     <option>1</option>
@@ -139,7 +139,7 @@ no questions yet
     <option>20</option>
 </select>
 
-&nbsp;&nbsp; and  &nbsp;&nbsp;
+&nbsp;&nbsp; a  &nbsp;&nbsp;
 
 <select name="max">
     <option>0</option>
@@ -167,21 +167,21 @@ no questions yet
 </select>
 
 &nbsp;&nbsp;
-answers.
+odpověďmi.
 
 &nbsp;&nbsp;
 &nbsp;&nbsp;
-Result Type:&nbsp;
+Typ výsledku:&nbsp;
 <select name="result_type">
-    <option selected>absolute</option>
-    <option>relative</option>
+    <option selected>absolutní</option>
+    <option>relativní</option>
 </select>
 
 </p>
 
 <table id="answer_table">
   <tbody>
-    <tr><th colspan="2">Question:</th><td><input type="text" name="question" size="70" /></td></tr>
+    <tr><th colspan="2">Otázka:</th><td><input type="text" name="question" size="70" /></td></tr>
     <tr><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th></tr>
 <!--
     <tr><th>&nbsp;&nbsp;&nbsp;</th><th>Answer #1:</th><td><input type="text" name="answer_1" size="70" /></td></tr>
@@ -196,7 +196,7 @@ Result Type:&nbsp;
     <tr><th>&nbsp;&nbsp;&nbsp;</th><th>Answer #10:</th><td><input type="text" name="answer_10" size="70" /></td></tr> -->
   </tbody>
   <tfoot>
-    <tr><th colspan="2"></th><th><a href="javascript:add_answers($('#answer_table'), 5)">add 5 more answers</a></th></tr>
+    <tr><th colspan="2"></th><th><a href="javascript:add_answers($('#answer_table'), 5)">přidat 5 dalších odpovědí</a></th></tr>
     <tr><td colspan="2"><input type="submit" value="add question" /></td></tr>
   </tfoot>
 

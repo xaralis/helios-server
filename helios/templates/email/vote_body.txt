@@ -1,29 +1,29 @@
-Dear {{voter.name}},
+Vážený {{voter.name}},
 
 {{custom_message|safe}}
 
-Election URL:  {{election_vote_url}}
-Election Fingerprint:  {{voter.election.hash}}
+URL Hlasování:  {{election_vote_url}}
+Otisk Hlasování:  {{voter.election.hash}}
 {% ifequal voter.voter_type "password" %}
-Your voter ID: {{voter.voter_login_id}}
-Your password: {{voter.voter_password}}
+Vaše ID voliče: {{voter.voter_login_id}}
+Vaše heslo: {{voter.voter_password}}
 {% else %}
-Log in with your {{voter.voter_type}} account.
+Přihlašte se svým {{voter.voter_type}} účtem.
 {% endifequal %}{% if voter.vote_hash %}
-We have recorded your vote with smart tracker:
+Zaznamenali jsem váš hlas chytrým sledovačem:
 
   {{voter.vote_hash}}
 
-You may re-vote if you wish: only your last vote counts.
+Můžete kdykoli znovu hlasovat: pouze poslední hlas se počítá.
 {% endif %}{% if election.use_voter_aliases %}
-In order to protect your privacy, this election is configured
-to never display your voter login ID, name, or email address to the public.
-Instead, the ballot tracking center will only display your alias.
+Z důvodů ochrany vašeho soukromí, toto hlasování je nastaveno
+aby nikdy nezobrazovalo veřejně Vaše login, ID voliče, jméno, nebo email.
+Centrum sledování lístků bude zobrazovat pouze váš alias.
 
-Your voter alias is {{voter.alias}}.
+Váš alias voliče je {{voter.alias}}.
 
-IMPORTANTLY, when you are prompted to log in to vote,
-please use your *voter ID*, not your alias.
+DŮLEŽITÉ; když jste požádání aby jste se přihlásili pro hlasování,
+prosím použíjte své *ID voliče*, nikoliv svůj alias.
 {% endif %}
 --
 Helios

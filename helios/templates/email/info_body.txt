@@ -1,8 +1,8 @@
-Dear {{voter.name}},
+Vážený {{voter.name}},
 
 {{custom_message|safe}}
 
-Election Link: {{election_vote_url}}
+Odkaz na volby: {{election_vote_url}}
 
 --
 Helios
