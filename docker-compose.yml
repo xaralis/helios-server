@@ -1,0 +1,9 @@
+helios:
+        image: lnovy/helios-docker:latest
+        environment:
+        - AUTH_ENABLED_AUTH_SYSTEMS=pirateid
+        - AUTH_DEFAULT_AUTH_SYSTEM=pirateid
+        - URL_HOST=https://helios.pirati.cz
+        restart: always
+        ports:
+        - 80:80
