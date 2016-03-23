@@ -6,19 +6,19 @@
 <br /> 
 <b>{$T.question.question}</b>
 <br />
-<span style="font-size: 0.6em;">#{$T.question_num + 1} of {$T.last_question_num + 1} &mdash;
- vote for 
+<span style="font-size: 0.6em;">#{$T.question_num + 1} z {$T.last_question_num + 1} &mdash;
+ zvolte 
 {#if $T.question.min && $T.question.min > 0}
 {#if $T.question.max}
-{$T.question.min} to {$T.question.max}
+od {$T.question.min} do {$T.question.max} možností
 {#else}
-at least {$T.question.min}
+nejméně {$T.question.min} možnosti
 {#/if}
 {#else}
 {#if $T.question.max}
-{#if $T.question.max > 1}up to {#/if}{$T.question.max}
+{#if $T.question.max > 1} nejvýše {#/if}{$T.question.max} možnosti
 {#else}
-as many as you approve of
+libovolný počet možností
 {#/if} 
 {#/if}
 </span>
@@ -30,7 +30,7 @@ as many as you approve of
 {#if $T.question.answer_urls && $T.question.answer_urls[$T.answer_ordering[$T.answer$index]] && $T.question.answer_urls[$T.answer_ordering[$T.answer$index]] != ""}
 &nbsp;&nbsp;
 <span style="font-size: 12pt;">
-[<a target="_blank" href="{$T.question.answer_urls[$T.answer_ordering[$T.answer$index]]}">more info</a>]
+[<a target="_blank" href="{$T.question.answer_urls[$T.answer_ordering[$T.answer$index]]}">více informací</a>]
 </span>
 {#/if}
 </div>
@@ -42,17 +42,17 @@ as many as you approve of
 
 {#if $T.show_reviewall}
 <div style="float: right;">
-<input type="button" onclick="BOOTH.validate_and_confirm({$T.question_num});" value="Proceed" />
+<input type="button" onclick="BOOTH.validate_and_confirm({$T.question_num});" value="Pokračovat" />
 </div>
 {#/if}
 
 {#if $T.question_num != 0}
-<input type="button" onclick="BOOTH.previous({$T.question_num})" value="Previous" />
+<input type="button" onclick="BOOTH.previous({$T.question_num})" value="Předchozí" />
 &nbsp;
 {#/if}
 
 {#if $T.question_num < $T.last_question_num}
-<input type="button" onclick="BOOTH.next({$T.question_num})" value="Next" />
+<input type="button" onclick="BOOTH.next({$T.question_num})" value="Následující" />
 &nbsp;
 {#/if}
 
