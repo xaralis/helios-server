@@ -12,7 +12,7 @@ HASDB=$?
 
 source venv/bin/activate
 
-if [ \! ${HASDB} ]; then
+if [ ${HASDB} -ne 0 ]; then
 	python manage.py syncdb
 fi
 
