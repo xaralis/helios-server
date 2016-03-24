@@ -2,6 +2,8 @@
 
 trap "echo TRAPed signal" HUP INT QUIT KILL TERM
 
+chown postgres:postgres /var/lib/postgresql
+
 /etc/init.d/postgresql start
 
 echo 'CREATE USER root; CREATE DATABASE helios;' | psql -U postgres | 2>&1 | grep -q "already exists"
