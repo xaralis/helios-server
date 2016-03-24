@@ -24,9 +24,9 @@ RUN bash -c 'source venv/bin/activate; pip install -r requirements.txt'
 
 RUN echo 'local   all             all                                     trust' > /etc/postgresql/9.4/main/pg_hba.conf
 
-ADD docker-entrypoint.sh /
+VOLUME /var/lib/postgres
 
-RUN echo > /.firstrun 
+ADD docker-entrypoint.sh /
 
 ENTRYPOINT /docker-entrypoint.sh
 
