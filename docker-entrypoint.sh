@@ -6,7 +6,8 @@ chown postgres:postgres /var/lib/postgresql
 
 /etc/init.d/postgresql start
 
-echo 'CREATE USER root; CREATE DATABASE helios;' | psql -U postgres | 2>&1 | grep -q "already exists"
+echo 'CREATE USER root;' | psql -U postgres
+echo 'CREATE DATABASE helios;' | psql -U postgres 2>&1 | grep -q "already exists"
 HASDB=$?
 
 source venv/bin/activate
