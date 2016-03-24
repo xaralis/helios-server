@@ -2,15 +2,18 @@
 
 trap "echo TRAPed signal" HUP INT QUIT KILL TERM
 
-source venv/bin/activate
-
 /etc/init.d/postgresql start
 
-if [ -f /.firstrun ]; then
-	echo 'CREATE USER root; CREATE DATABASE helios;' | psql -U postgres
-	./reset.sh
-	rm /.firstrun
+echo 'CREATE USER root; CREATE DATABASE helios;' | psql -U postgres | 2>&1 | grep -q "already exists"
+HASDB=$?
+
+source venv/bin/activate
+
+if [ \! ${HASDB} ]; then
+	python manage.py syncdb
 fi
+
+python manage.py migrate
 
 python manage.py runserver 0.0.0.0:80
 
