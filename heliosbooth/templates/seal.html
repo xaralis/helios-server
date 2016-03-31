@@ -1,48 +1,48 @@
 
 {#if $T.election_metadata.use_advanced_audit_features}
 <div style="float: right; background: lightyellow; margin-left: 20px; padding: 0px 10px 10px 10px; border: 1px solid #ddd; width:200px;">
-<h4><a onclick="$('#auditbody').slideToggle(250);" href="#">Audit</a> <span style="font-size: 0.8em; color: #444">[optional]</span></h4>
+<h4><a onclick="$('#auditbody').slideToggle(250);" href="#">Audit</a> <span style="font-size: 0.8em; color: #444">[nepovinný]</span></h4>
 <div id="auditbody" style="display:none;">
 <p>
-If you choose, you can audit your ballot and reveal how your choices were encrypted.
+Chcete-li, můžete provést audit svého hlasovacího lístku a dozvědět se, jak byla vaše volba zašifrována.
 </p>
 <p>
-You will then be guided to re-encrypt your choices for final casting.
+Pak budete muset provést nové zašifrování hlasu před jeho odevzdáním.
 </p>
-<input type="button" value="Verify Encryption" onclick="BOOTH.audit_ballot();" class="pretty" />
+<input type="button" value="Zkontrolovat zašifrování" onclick="BOOTH.audit_ballot();" class="pretty" />
 </p>
 </div>
 </div>
 {#/if}
 
-<h3>Review your Ballot</h3>
+<h3>Kontrola vašeho hlasovacího lístku</h3>
 
 
 <div style="padding: 10px; margin-bottom: 10px; background-color: #eee; border: 1px #ddd solid; max-width: 340px;">
 {#foreach $T.questions as question}
 
-<b>Question #{$T.question$index + 1}: {$T.question.short_name}</b><br>
+<b>Otázka č. {$T.question$index + 1}: {$T.question.short_name}</b><br>
 {#if $T.choices[$T.question$index].length == 0}
-<div style="margin-left: 15px;">&#x2610; <i>No choice selected</i></div>
+<div style="margin-left: 15px;">&#x2610; <i>Žádná možnost není vybrána</i></div>
 {#/if}
 {#foreach $T.choices[$T.question$index] as choice}
 <div style="margin-left: 15px;">&#x2713; {$T.choice}</div>
 {#/for}
 {#if $T.choices[$T.question$index].length < $T.question.max}
-[you under-voted: you may select up to {$T.question.max}]
+[vybral jste méně možností: můžete zvolit až {$T.question.max} možnosti]
 {#/if}
-[<a onclick="BOOTH.show_question({$T.question$index}); return false;" href="#">edit responses</a>]
+[<a onclick="BOOTH.show_question({$T.question$index}); return false;" href="#">upravit odpovědi</a>]
 {#if !$T.question$last}<br><br>{#/if}
 {#/for}
 </div>
 
 
-<p><p>Your ballot tracker is <b><tt style="font-size: 11pt;">{$T.encrypted_vote_hash}</tt></b>, and you can <a onclick="BOOTH.show_receipt(); return false;" href="#">print</a> it.<br /><br /></p>
+<p><p>Váš kód pro sledování hlasovacího lístku je <b><tt style="font-size: 11pt;">{$T.encrypted_vote_hash}</tt></b>, a můžete si ho <a onclick="BOOTH.show_receipt(); return false;" href="#">vytisknout</a>.<br /><br /></p>
 
 <p>
-Once you click "Submit", the unencrypted version of your ballot will be destroyed, and only the encrypted version will remain.  The encrypted version will be submitted to the Helios server.</p>
+Jakmile stisknete "Odevzdat", nezašifrovaná podoba vašeho hlasovacího lístku bude odstraněna a zůstane pouze zašifrovaná podoba.  Ta bude odeslána na server Helios.</p>
 
-<button id="proceed_button" onclick="BOOTH.cast_ballot();">Submit this Vote!</button><br />
+<button id="proceed_button" onclick="BOOTH.cast_ballot();">Odevzdat tento hlas!</button><br />
 <div id="loading_div"><img src="loading.gif" id="proceed_loading_img" /></div>
 
 
