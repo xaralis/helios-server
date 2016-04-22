@@ -4,6 +4,7 @@ trap "echo TRAPed signal" HUP INT QUIT KILL TERM
 
 chown postgres:postgres /var/lib/postgresql
 
+/etc/init.d/rabbitmq-server start
 /etc/init.d/postgresql start
 
 echo 'CREATE USER root;' | psql -U postgres
@@ -18,7 +19,10 @@ fi
 
 python manage.py migrate
 
+python manage.py celeryd &
+
 python manage.py runserver 0.0.0.0:80
 
+/etc/init.d/rabbitmq-server stop
 /etc/init.d/postgresql stop
 
