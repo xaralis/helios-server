@@ -460,7 +460,10 @@ class Election(HeliosModel):
         if hasattr(AUTH_SYSTEMS[auth_system], 'can_list_category_members'):
           for constraint in eligibility_case['constraint']:
             category_id = AUTH_SYSTEMS[auth_system].eligibility_category_id(constraint)
-            for u in AUTH_SYSTEMS[auth_system].list_category_members(category_id):
+            user_list = AUTH_SYSTEMS[auth_system].list_category_members(category_id)
+            if self.use_voter_aliases:
+              random.shuffle(user_list)
+            for u in user_list:
               user = User.update_or_create(user_type = u['type'], user_id = u['id'], name = u['name'], info = u['info'], token = u['token'])
               Voter.register_user_in_election(user, self)
         else:
