@@ -6,8 +6,6 @@ RUN apt-get update
 
 RUN apt-get install -y python-software-properties software-properties-common
 
-RUN apt-add-repository 'deb http://packages.dotdeb.org wheezy all'
-
 RUN apt-get upgrade -y && apt-get -y install python-virtualenv python-pip postgresql postgresql-client unzip libpq-dev postgresql-server-dev-all python-dev rabbitmq-server
 
 ADD https://github.com/pirati-cz/helios-server/archive/master.zip /helios/
