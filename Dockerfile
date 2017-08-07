@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:jessie
 
 EXPOSE 80
 
