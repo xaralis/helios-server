@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-EXPOSE 80
+EXPOSE 8000
 
 RUN apt-get update
 
@@ -21,6 +21,10 @@ RUN virtualenv venv
 RUN bash -c 'source venv/bin/activate; pip install -r requirements.txt'
 
 ADD docker-entrypoint.sh /
+
+RUN adduser --disabled-login --quiet --gecos Helios helios
+
+USER helios
 
 ENTRYPOINT /docker-entrypoint.sh
 
