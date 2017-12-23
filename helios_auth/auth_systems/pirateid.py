@@ -24,7 +24,6 @@ LOGIN_MESSAGE = "Log in with my PirateID"
 OPENID_ENDPOINT = 'https://openid.pirati.cz'
 
 AX_REQUIRED_FIELDS = {
-    'fullname' : 'http://axschema.org/namePerson',
     'email' : 'http://axschema.org/contact/email',
     'nickname' : 'http://axschema.org/namePerson/friendly'
 }
@@ -38,7 +37,7 @@ def get_auth_url(request, redirect_url):
 def get_user_info_after_auth(request):
   data = view_helpers.finish_openid(request.session, request.GET, request.session['pirateid_redirect_url'], ax_required_fields = AX_REQUIRED_FIELDS)
 
-  return {'type' : 'pirateid', 'user_id': data['ax']['nickname'][0], 'name': data['ax']['fullname'][0], 'info': {'email': data['ax']['email'][0]}, 'token':{}}
+  return {'type' : 'pirateid', 'user_id': data['ax']['nickname'][0], 'name': data['ax']['nickname'][0], 'info': {'email': data['ax']['email'][0]}, 'token':{}}
     
 def do_logout(user):
   """
@@ -93,12 +92,12 @@ def list_categories(user):
 def can_list_category_members():
   return True
 
-def list_category_members(category_id):
+def list_category_members(category_id\):
   members = json.load(urllib2.urlopen("https://graph.pirati.cz/" + category_id + "/members"))
   users = []
   for member in members:
     user = json.load(urllib2.urlopen("https://graph.pirati.cz/" + member[u'id']))
-    users.append({'type': 'pirateid', 'id': user[u'username'], 'name': user[u'fullname'], 'info': {'email': user[u'email']}, 'token': {}})
+    users.append({'type': 'pirateid', 'id': user[u'username'], 'name': user[u'username'], 'info': {'email': user[u'email']}, 'token': {}})
 
   return users
 
