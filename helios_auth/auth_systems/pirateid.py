@@ -92,7 +92,7 @@ def list_categories(user):
 def can_list_category_members():
   return True
 
-def list_category_members(category_id\):
+def list_category_members(category_id):
   members = json.load(urllib2.urlopen("https://graph.pirati.cz/" + category_id + "/members"))
   users = []
   for member in members:
