@@ -415,7 +415,7 @@ class ElectionBlackboxTests(WebTest):
             if hasattr(response, "body"):
                 assert text in response.body, "missing text %s" % text        
             else:
-                assert text in response.content, "missing text %s" % text
+                assert text in response.content.decode('utf-8'), "missing text %s" % text
 
     def setup_login(self):
         # set up the session
