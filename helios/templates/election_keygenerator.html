@@ -87,66 +87,66 @@ function show_pk() {
 
 </script>
 
-<h2 class="title">{{election.name}} &mdash; Trustee {{trustee.name}} &mdash; Key Setup</h2>
+<h2 class="title">{{election.name}} &mdash; Trustee {{trustee.name}} &mdash; - nastavení klíče</h2>
 
 <p>
-  As a trustee, it's time to set up your key for this election.
+  Jako trustéé nyní musíte nastavit svůj klíč pro toto hlasování.
 </p>
 
 <p id="waiting_message">
-  Please wait for the generator to load...
+  Vyčkejte, prosím, nahrává se generátor...
 </p>
 
 <p id="generator">
 
-<span id="buttons"><button onclick="generate_keypair(); return false;" id="generate_button">Generate Election Keys</button></span>
+<span id="buttons"><button onclick="generate_keypair(); return false;" id="generate_button">Vytvoření klíčů pro hlasování</button></span>
 
 <br /><br />
-If you've already generated a keypair, you can <a href="javascript:show_key_reuse()">reuse it</a>.
+Pokud máte již vytvořenu dvojici klíčů, můžete ji <a href="javascript:show_key_reuse()">znovu použít</a>.
 </p>
 
 <div id="reuse">
-<h3>Reusing a Key</h3>
+<h3>Opětovné použití klíče</h3>
 
 <p>
-Enter your complete secret key below:
+Vložte celý svůj tajný klíč do okénka níže:
 </p>
 <form onsubmit="reuse_key(this.secret_key.value); return false;">
 <textarea cols="80" rows="5" wrap="soft" name="secret_key">
 </textarea>
 <br />
-<input type="submit" value="reuse" />
+<input type="submit" value="opětovně použít" />
 </form>
 </div>
 
 <div id="sk_download">
-<h3>Your Secret Key</h3>
+<h3>Váš tajný klíč</h3>
 <span id="clear_button">
-Your key has been generated, but you may choose to<br /><a href="javascript:clear_keys();">clear it from memory and start from scratch</a> if you prefer.<br />
+Váš klíč byl vytvořen, ale můžete se rozhodnout<br /><a href="javascript:clear_keys();">vymazat ho z paměti a začít znovu</a>.<br />
 </span>
 
 <p>
-    <button style="font-size:16pt;" onclick="download_sk(); $('#pk_link').show();">Save your secret key</button>
+    <button style="font-size:16pt;" onclick="download_sk(); $('#pk_link').show();">Uložit tajný klíč</button>
 </p>
 
 <p style="display: none;" id="pk_link">
-  <a href="javascript:show_pk();">ok, I've saved the key, let's move on</a>.
+  <a href="javascript:show_pk();">váš klíč byl uložen, můžeme pokračovat</a>.
 </p>
 </div>
 
 <form method="post" id="pk_form" action="{% url "helios.views.trustee_upload_pk" election.uuid trustee.uuid %}">
-<h3>Your Public Key</h3>
+<h3>Váš veřejný klíč</h3>
 <p>
-    It's time to upload the public key to the server.
+    Nyní je třeba nahrát váš veřejný klíč na server.
 </p>
 <p>
-    The fingerprint of your public key is: <tt id="pk_hash" style="font-size: 1.5em; font-weight: bold;"></tt>.<br />
-    You may want to save this to confirm that your public key was properly stored by the server.<br />
-    (Your public key is not currently being displayed because you do not need to save it, the fingerprint is sufficient.)
+    Otisk vašeho veřejného klíče je: <tt id="pk_hash" style="font-size: 1.5em; font-weight: bold;"></tt>.<br />
+    Můžete si ho uložit kvůli ověření, že váš veřejný klíč byl v pořádku uložen na server.<br />
+    (Nezobrazujeme celý váš veřejný klíč, neboť není potřeba, abyste si ho ukládal, otisk postačuje.)
 </p>
 <textarea id="pk_textarea" name="public_key_json" cols="80" rows="10" style="display:none;">
 </textarea>
-<input type="submit" value="Upload your public key">
+<input type="submit" value="Nahrát váš veřejný klíč na server">
 </form>
 
 <div id="applet_div"></div>
