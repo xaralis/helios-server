@@ -1,42 +1,42 @@
 {% extends TEMPLATE_BASE %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Freeze Ballot</h2>
+  <h2 class="title">{{election.name}} &mdash; Uzavřít hlasovací lístek</h2>
 <p>
-Once the ballot is frozen, the questions and options can no longer be modified.<br />
-The list of trustees and their public keys will also be frozen.
+Jakmile je hlasovací lístek uzavřen, otázky a možnosti již nemohou být změněny.<br />
+Bude také uzavřen seznam trustees jejich veřejných klíčů.
 </p>
 
 <p>
 {% if election.openreg %}
-Registration for your election is currently <b>open</b>, which means anyone can vote, even after you freeze the ballot.
+Registrace pro toto hlasování je <b>otevřená</b>, což znamená, že hlasovat může kdokoli, a to i po uzavření hlasovacího lístku.
 {% else %}
-Registration for your election is currently <b>closed</b>, which means only the voters you designate will be able to cast a ballot. As the administrator, you will still be able to modify that voter list as the election progresses.
+Registrace pro toto hlasování je <b>uzavřená</b>, což znamená že jen voliči, které určíte, budou moci odevzdat hlasovací lístek. Jste-li administrátor, budete moci upravit seznam voličů i během hlasování.
 {% endif %}
 </p>    
 
 {% if helios.VOTERS_EMAIL %}
 <p>
-You must freeze the ballot before you can contact voters.
+Před kontaktováním voličů musíte uzavřít hlasovací lístek.
 </p>
 {% endif %}
 
 {% if issues_p %}
 <p>
-    Before you can freeze the election, you will need to:
+    Před uzavřením tvorby hlasování musíte:
     <ul>
         {% for issue in issues %}
         <li>{{issue.action}}</li>
         {% endfor %}
     </ul>
-    <a href="{% url "helios.views.one_election_view" election.uuid %}">go back to the election</a>
+    <a href="{% url "helios.views.one_election_view" election.uuid %}">zpět k hlasování</a>
 </p>
 {% else %}
 <form method="post" action="">
 <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     
-<input class="button" type="submit" value="Freeze the ballot" />
-<button onclick="document.location='./view'; return false;">never mind</button>
+<input class="button" type="submit" value="Uzavřít hlasovací lístek" />
+<button onclick="document.location='./view'; return false;">ještě ne</button>
 </form>
 {% endif %}
 
