@@ -1,30 +1,30 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}Compute Encryted Tally for {{election.name}}{% endblock %}
+{% block title %}Spočítat zašifrovaný výsledek pro {{election.name}}{% endblock %}
 
 {% block content %}
-  <h2 class="title">Compute Tally for Election: {{election.name}}</h2>
+  <h2 class="title">Spočítat výsledek pro hlasování: {{election.name}}</h2>
 
 <div id="instructions">
 {% if election.num_cast_votes %}
 <p>
-    You are about to compute the encrypted tally for election <b>{{election.name}}</b>.
+    Chystáte se nechat spočítat zašifrovaný výsledek hlasování <b>{{election.name}}</b>.
 </p>
 
 <p>
-    Once you do this, voters will no longer be able to cast a ballot.
+    Jakmile tak učiníte, voliči již nebudou moci odevzdávat hlasovací lístky.
 </p>
 
-<form method="post" action="" onsubmit="alert('ok, tally has begun')" class="pretty">
+<form method="post" action="" onsubmit="alert('sčítání hlasů bylo zahájeno')" class="pretty">
 <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     
-<input class="button" type="submit" value="compute encrypted tally!" />
-<button onclick="document.location='./view'; return false;">never mind</button>
+<input class="button" type="submit" value="Spočítat zašifrovaný výsledek!" />
+<button onclick="document.location='./view'; return false;">ještě ne</button>
 </form>
 {% else %}
 <p>
-No votes have been cast in this election. At least one vote must be cast before you compute the tally.<br /><br />
-<a href="./view">back to election</a>
+V tomto hlasování nebyl odevzdán žádný hlas. Aby mohl být spočítán výsledek, musí být odevzdán aspoň jeden hlas.<br /><br />
+<a href="./view">zpět na hlasování</a>
 </p>
 {% endif %}
 </div>
