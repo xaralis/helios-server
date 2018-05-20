@@ -1,17 +1,17 @@
 {% extends 'server_ui/templates/base.html' %}
-{% block title %}Confirm Vote{% endblock %}
+{% block title %}Potvrzení hlasu{% endblock %}
 
 {% block content %}
-<h1>Your Vote was Cast</h1>
+<h1>Odevzdal jste svůj hlas</h1>
 
 <p>
-    A vote was successfully cast for <b>{{voter.voter_id}}</b>, with vote fingerprint:
+    Úspěšně jste odevzdal hlas jako volič <b>{{voter.voter_id}}</b>, otisk hlasu je:
     <br /><br />
     <tt style="font-size: 2em;">{{voter.vote_hash}}</tt>
 </p>
 
 <p>
-    Visit the <a href="{% url "helios.views.one_election_view" election.uuid %}">election homepage</a>.
+    Můžete přejít na <a href="{% url "helios.views.one_election_view" election.uuid %}">úvodní stránku hlasování</a>.
 </p>
 
 {% endblock %}
