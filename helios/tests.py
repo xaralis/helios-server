@@ -471,7 +471,7 @@ class ElectionBlackboxTests(WebTest):
         response = self.client.get("/helios/elections/%s/voters/list" % self.election.uuid, follow=False)
         # check total count of voters
         if self.election.num_voters == 0:
-            self.assertContains(response, "no voters")
+            self.assertContains(response, "žádní voliči")
         else:
             self.assertContains(response, "(of %s)" % self.election.num_voters)
 
@@ -807,7 +807,7 @@ class ElectionBlackboxTests(WebTest):
 
         self.clear_login()
         response = self.client.get("/helios/elections/%s/voters/list" % election_id)
-        self.assertContains(response, "Only the voters listed here")
+        self.assertContains(response, "Jen voliči v tomto seznamu")
 
     def test_do_complete_election_with_trustees(self):
         """
