@@ -86,7 +86,7 @@ def list_categories(user):
   list groups from the graph api
   """
   groups = json.load(urllib2.urlopen("https://graph.pirati.cz/groups"))
-  
+  groups.sort(key=lambda k: k['username'].lower())
   return [{'id': group[u'id'], 'name':group[u'username']} for group in groups]
 
 def can_list_category_members():
