@@ -27,8 +27,9 @@
 <input type="hidden" name="choice_type" value="approval" />
 <b>{$T.question$index + 1}.</b> &nbsp;&nbsp;&nbsp;Zvolte mezi &nbsp;&nbsp;
 <select name="min">
-    <option selected>0</option>
-{#for option_index = 1 to 20}
+    <option>0</option>
+    <option selected>1</option>
+{#for option_index = 2 to 20}
     <option>{$T.option_index}</option>
 {#/for}
 </select>
@@ -71,7 +72,7 @@ Typ výsledku:&nbsp;
 </form>
 </div>
 {#else}
-zatím řádné otázky
+zatím žádné otázky
 {#/for}
 
 {#if $T.admin_p}
@@ -87,7 +88,8 @@ zatím řádné otázky
 <input type="hidden" name="choice_type" value="approval" />
 &nbsp;&nbsp;&nbsp;Zvolte mezi &nbsp;&nbsp;
 <select name="min">
-    <option selected>0</option>
+    <option>0</option>
+    <option selected>1</option>
 {#for option_index = 1 to 20}
     <option>{$T.option_index}</option>
 {#/for}
