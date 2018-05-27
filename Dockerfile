@@ -1,10 +1,10 @@
-FROM debian:jessie
+FROM debian:stretch
 
 EXPOSE 8000
 
 RUN apt-get update
 
-RUN apt-get install -y python-software-properties software-properties-common
+RUN apt-get install -y software-properties-common
 
 RUN apt-get upgrade -y && apt-get -y install python-virtualenv python-pip unzip libpq-dev python-dev rabbitmq-server
 
