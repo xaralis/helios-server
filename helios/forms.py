@@ -11,8 +11,8 @@ from django.conf import settings
 
 
 class ElectionForm(forms.Form):
-  short_name = forms.SlugField(max_length=40, help_text=u'bez mezer, bude použita jako část URL vašeho hlasování, např. my-club-2010', label=u"Zkratka")
-  name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'size':60}), help_text=u'plný název vašeho hlasování, např. My Club 2010 Election', label=u"Název")
+  short_name = forms.SlugField(max_length=40, help_text=u'bez mezer, bude použita jako část URL vašeho hlasování, např. kf-msk-20-2018-zmena-rozpoctu', label=u"Zkratka")
+  name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'size':60}), help_text=u'plný název vašeho hlasování, např. KF MSK 20/2018 Změna rozpočtu', label=u"Název")
   description = forms.CharField(max_length=32000, widget=forms.Textarea(attrs={'cols': 70, 'wrap': 'soft'}), required=False, label=u"Popis")
   election_type = forms.ChoiceField(label=u"Typ", choices = Election.ELECTION_TYPES)
   use_voter_aliases = forms.BooleanField(required=False, initial=False, help_text=u'zvolíte-li tuto možnost, na stránce pro sledování hlasovacích lístků budou jména voličů nahrazena aliasy, např. "V12"', label=u"Použít aliasy voličů")
