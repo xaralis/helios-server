@@ -4,12 +4,12 @@
 <h4>
 {#if $T.admin_p}[
 {#if $T.question$index > 0}<a href="javascript:question_move_up({$T.question$index});">^</a>]&nbsp;[{#/if}
-<a onclick="return confirm('Are you sure you want to remove this question?');" href="javascript:question_remove({$T.question$index})">x</a>] [<a href="javascript:question_edit({$T.question$index})">edit</a>] {#/if}{$T.question$index + 1}. {$T.question.question} ({$T.question.choice_type}, select between {$T.question.min} and {#if $T.question.max != null}{$T.question.max}{#else}unlimited{#/if} answers, result type {$T.question.result_type}.)</h4>
+<a onclick="return confirm('Určitě chcete odstranit tuto otázku?');" href="javascript:question_remove({$T.question$index})">x</a>] [<a href="javascript:question_edit({$T.question$index})">upravit</a>] {#/if}{$T.question$index + 1}. {$T.question.question} ({$T.question.choice_type}, zvolte mezi {$T.question.min} a {#if $T.question.max != null}{$T.question.max}{#else}neomezeně{#/if} odpověďmi, typ výsledku {$T.question.result_type}.)</h4>
 <ul>
 {#foreach $T.question.answers as answer}
 <li> {$T.answer}
 {#if $T.question.answer_urls[$T.answer$index]}
-  [<a target="_new" href="{$T.question.answer_urls[$T.answer$index]}">more</a>]
+  [<a target="_new" href="{$T.question.answer_urls[$T.answer$index]}">podrobnosti</a>]
 {#/if}
 </li>
 {#/for}
@@ -65,7 +65,7 @@ Typ výsledku:&nbsp;
   </tbody>
   <tfoot>
     <tr><th colspan="2"></th><th><a href="javascript:add_answers($('#answer_table_{$T.question$index}'),5)">přidat 5 dalších odpovědí</a></th></tr>
-    <tr><td colspan="3"><input type="submit" value="update question" /> &nbsp; <input type="reset" value="cancel" onclick="question_edit_cancel({$T.question$index});" /></td></tr>
+    <tr><td colspan="3"><input type="submit" value="změnit otázku" /> &nbsp; <input type="reset" value="zpět" onclick="question_edit_cancel({$T.question$index});" /></td></tr>
   </tfoot>
 
 </table>
@@ -126,7 +126,7 @@ Typ výsledku:&nbsp;
   </tbody>
   <tfoot>
     <tr><th colspan="2"></th><th><a href="javascript:add_answers($('#answer_table'), 5)">přidat 5 dalších odpovědí</a></th></tr>
-    <tr><td colspan="2"><input type="submit" value="add question" /></td></tr>
+    <tr><td colspan="2"><input type="submit" value="přidat otázku" /></td></tr>
   </tfoot>
 
 </table>
