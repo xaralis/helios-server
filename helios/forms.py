@@ -20,9 +20,9 @@ class ElectionForm(forms.Form):
   randomize_answer_order = forms.BooleanField(required=False, initial=False, help_text=u'zvolte, pokud chcete, aby se každému voliči zobrazovaly odpovědi na otázky v náhodně zvoleném pořadí', label=u"Odpovědi v náhodném pořadí")
   private_p = forms.BooleanField(required=False, initial=False, label=u"Soukromé?", help_text=u'Soukromé hlasování je viditelné jen pro registrované voliče.')
   help_email = forms.CharField(required=False, initial="", label=u"E-mail pro nápovědu", help_text=u'e-mailová adresa, na kterou se budou voliči obracet s žádostmi o pomoc.')
-  voting_starts_at = SplitDateTimeField(help_text = u'datum a čas zahájení hlasování; v UTC, takže oproti časovému pásmu ČR je menší o 1, resp. 2 hodiny',
+  voting_starts_at = SplitDateTimeField(help_text = u'datum a čas zahájení hlasování; v UTC, takže oproti časovému pásmu ČR je menší o 1 hodinu v zimním, resp. o 2 hodiny v letním čase',
                                    widget=SplitSelectDateTimeWidget, required=False, label=u"Hlasování začíná v")
-  voting_ends_at = SplitDateTimeField(help_text = u'datum a čas ukončení hlasování; v UTC, takže oproti časovému pásmu ČR je menší o 1, resp. 2 hodiny',
+  voting_ends_at = SplitDateTimeField(help_text = u'datum a čas ukončení hlasování; v UTC, takže oproti časovému pásmu ČR je menší o 1 v zimním, resp. o 2 hodiny v letním čase',
                                    widget=SplitSelectDateTimeWidget, required=False, label=u"Hlasování končí v")
   
   if settings.ALLOW_ELECTION_INFO_URL:
