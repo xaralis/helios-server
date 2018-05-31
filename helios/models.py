@@ -355,27 +355,27 @@ class Election(HeliosModel):
     if self.questions == None or len(self.questions) == 0:
       issues.append(
         {'type': 'questions',
-         'action': "add questions to the ballot"}
+         'action': u"přidat do hlasovacího lístku otázky"}
         )
   
     trustees = Trustee.get_by_election(self)
     if len(trustees) == 0:
       issues.append({
           'type': 'trustees',
-          'action': "add at least one trustee"
+          'action': u"přidat aspoň jednoho trusteeho"
           })
 
     for t in trustees:
       if t.public_key == None:
         issues.append({
             'type': 'trustee keypairs',
-            'action': 'have trustee %s generate a keypair' % t.name
+            'action': u'nechat trusteeho %s vytvořit si svůj pár klíčů' % t.name
             })
 
     if self.voter_set.count() == 0 and not self.openreg:
       issues.append({
           "type" : "voters",
-          "action" : 'enter your voter list (or open registration to the public)'
+          "action" : u'zadat seznam voličů (nebo ponechat veřejné registrace)'
           })
 
     return issues    
