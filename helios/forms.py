@@ -11,40 +11,40 @@ from django.conf import settings
 
 
 class ElectionForm(forms.Form):
-  short_name = forms.SlugField(max_length=40, help_text='no spaces, will be part of the URL for your election, e.g. my-club-2010')
-  name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'size':60}), help_text='the pretty name for your election, e.g. My Club 2010 Election')
-  description = forms.CharField(max_length=32000, widget=forms.Textarea(attrs={'cols': 70, 'wrap': 'soft'}), required=False)
-  election_type = forms.ChoiceField(label="type", choices = Election.ELECTION_TYPES)
-  use_voter_aliases = forms.BooleanField(required=False, initial=False, help_text='If selected, voter identities will be replaced with aliases, e.g. "V12", in the ballot tracking center')
+  short_name = forms.SlugField(max_length=40, help_text=u'bez mezer, bude použita jako část URL vašeho hlasování, např. my-club-2010', label=u"Zkratka")
+  name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'size':60}), help_text=u'plný název vašeho hlasování, např. My Club 2010 Election', label=u"Název")
+  description = forms.CharField(max_length=32000, widget=forms.Textarea(attrs={'cols': 70, 'wrap': 'soft'}), required=False, label=u"Popis")
+  election_type = forms.ChoiceField(label=u"Typ", choices = Election.ELECTION_TYPES)
+  use_voter_aliases = forms.BooleanField(required=False, initial=False, help_text=u'zvolíte-li tuto možnost, na stránce pro sledování hlasovacích lístků budou jména voličů nahrazena aliasy, např. "V12"', label=u"Použít aliasy voličů")
   #use_advanced_audit_features = forms.BooleanField(required=False, initial=True, help_text='disable this only if you want a simple election with reduced security but a simpler user interface')
-  randomize_answer_order = forms.BooleanField(required=False, initial=False, help_text='enable this if you want the answers to questions to appear in random order for each voter')
-  private_p = forms.BooleanField(required=False, initial=False, label="Private?", help_text='A private election is only visible to registered voters.')
-  help_email = forms.CharField(required=False, initial="", label="Help Email Address", help_text='An email address voters should contact if they need help.')
-  voting_starts_at = SplitDateTimeField(help_text = 'UTC date and time when voting begins',
-                                   widget=SplitSelectDateTimeWidget, required=False)
-  voting_ends_at = SplitDateTimeField(help_text = 'UTC date and time when voting ends',
-                                   widget=SplitSelectDateTimeWidget, required=False)
+  randomize_answer_order = forms.BooleanField(required=False, initial=False, help_text=u'zvolte, pokud chcete, aby se každému voliči zobrazovaly odpovědi na otázky v náhodně zvoleném pořadí', label=u"Odpovědi v náhodném pořadí")
+  private_p = forms.BooleanField(required=False, initial=False, label=u"Soukromé?", help_text=u'Soukromé hlasování je viditelné jen pro registrované voliče.')
+  help_email = forms.CharField(required=False, initial="", label=u"E-mail pro nápovědu", help_text=u'e-mailová adresa, na kterou se budou voliči obracet s žádostmi o pomoc.')
+  voting_starts_at = SplitDateTimeField(help_text = u'datum a čas zahájení hlasování; v UTC, takže oproti časovému pásmu ČR je menší o 1, resp. 2 hodiny',
+                                   widget=SplitSelectDateTimeWidget, required=False, label=u"Hlasování začíná v")
+  voting_ends_at = SplitDateTimeField(help_text = u'datum a čas ukončení hlasování; v UTC, takže oproti časovému pásmu ČR je menší o 1, resp. 2 hodiny',
+                                   widget=SplitSelectDateTimeWidget, required=False, label=u"Hlasování končí v")
   
   if settings.ALLOW_ELECTION_INFO_URL:
-    election_info_url = forms.CharField(required=False, initial="", label="Election Info Download URL", help_text="the URL of a PDF document that contains extra election information, e.g. candidate bios and statements")
+    election_info_url = forms.CharField(required=False, initial="", label=u"URL pro stažení informací o hlasování", help_text=u"URL dokumentu ve formátu PDF, obsahujícího doplňkové informace k hlasování, např. životopisy a profily kandidátů")
   
   pass
   
 class ElectionTimeExtensionForm(forms.Form):
-  voting_extended_until = SplitDateTimeField(help_text = 'UTC date and time voting extended to',
-                                   widget=SplitSelectDateTimeWidget, required=False)
+  voting_extended_until = SplitDateTimeField(help_text = u'datum a čas prodlouženého ukončení hlasování; v UTC',
+                                   widget=SplitSelectDateTimeWidget, required=False, label=u"Hlasování prodlouženo do")
   
 class EmailVotersForm(forms.Form):
   subject = forms.CharField(max_length=80)
   body = forms.CharField(max_length=4000, widget=forms.Textarea)
-  send_to = forms.ChoiceField(label="Send To", initial="all", choices= [('all', 'all voters'), ('voted', 'voters who have cast a ballot'), ('not-voted', 'voters who have not yet cast a ballot')])
+  send_to = forms.ChoiceField(label=u"Poslat", initial="all", choices= [('all', u'všem voličům'), ('voted', u'voličům, kteří již odevzdali lístek'), ('not-voted', u'voličům, kteří ještě neodevzdali lístek')])
 
 class TallyNotificationEmailForm(forms.Form):
   subject = forms.CharField(max_length=80)
   body = forms.CharField(max_length=2000, widget=forms.Textarea, required=False)
-  send_to = forms.ChoiceField(label="Send To", choices= [('all', 'all voters'), ('voted', 'only voters who cast a ballot'), ('none', 'no one -- are you sure about this?')])
+  send_to = forms.ChoiceField(label=u"Poslat", choices= [('all', u'všem voličům'), ('voted', u'jen voličům, kteří odevzdali lístek'), ('none', u'nikomu -- jste si tím jist?')])
 
 class VoterPasswordForm(forms.Form):
-  voter_id = forms.CharField(max_length=50, label="Voter ID")
+  voter_id = forms.CharField(max_length=50, label=u"ID voliče")
   password = forms.CharField(widget=forms.PasswordInput(), max_length=100)
 
