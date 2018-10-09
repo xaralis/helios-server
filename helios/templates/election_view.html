@@ -152,7 +152,7 @@ Poté uvidíte výsledek pouze vy jakožto zakladatel hlasování.
 {% if show_result %}
 {% if election.result_released_at %}
 <span class="highlight-box round">
-    Toto hlasování bylo ukončeno.
+    Toto hlasování bylo ukončeno. Výsledek byl zveřejněn {{election.result_released_at}}. Celkem bylo odevzdáno {{election.num_cast_votes}} hlasů.
 </span><br /><br /><br />
 {% endif %}
 
