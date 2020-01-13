@@ -1,10 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
 <head>
-  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Helios - Hlasovací budka</title>
-  <link rel="stylesheet" type="text/css" href="css/booth.css" />
-  <link rel="stylesheet" type="text/css" href="css/forms.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/booth-pirate.css" />
 
 <!--
   <script language="javascript" src="js/jscrypto/class.js"></script>
@@ -23,16 +25,17 @@
   <script language="javascript" src="js/jscrypto/sha1.js"></script>
   <script language="javascript" src="js/jscrypto/sha2.js"></script>
   <script language="javascript" src="js/jscrypto/helios.js"></script>-->
-  
+
   <script language="javascript" src="js/20160507-helios-booth-compressed.js"></script>
 </head>
 <body>
 <div id="wrapper">
-<span style="float:right; padding: 7px 15px 5px 10px;">[<a href="javascript:BOOTH.exit();">exit</a>]</span>
-<div id="banner">Helios - Hlasovací budka</div>
-<div id="content">
-
-<div id="header">
+  <div id="banner">
+    <h2 class="banner-main">Helios - Hlasovací budka</h2>
+    <span class="booth-exit"><a href="javascript:BOOTH.exit();">konec</a></span>
+  </div>
+  <div id="content">
+  <div id="header">
 </div>
 
 <script language="javascript">
@@ -177,7 +180,7 @@ BOOTH.setup_election = function(raw_json, election_metadata) {
 
   // whether the election wants candidate order randomization or not
   // we set up an ordering array so that the rest of the code is
-  // less error-prone. 
+  // less error-prone.
   BOOTH.election.question_answer_orderings = [];
   $(BOOTH.election.questions).each(function(i, question) {
     var ordering = new Array(question.answers.length);
@@ -592,10 +595,10 @@ BOOTH.do_done = function() {
 
 </script>
 <div id="page">
-  <div id="progress_div" style="display:none; width: 500px; margin:auto;">
-      <table width="100%">
-          <tr><td id="progress_1">(1) Výběr</td><td id="progress_2">(2) Kontrola</td><td id="progress_3">(3) Odeslání</td></tr>
-      </table>
+  <div id="progress_div" style="display:none;">
+    <div id="progress_1">1. Výběr</div>
+    <div id="progress_2">2. Kontrola</div>
+    <div id="progress_3">3. Odeslání</div>
   </div>
   <div id="election_div" class="panel">
     <h3>Ověřuji možnosti prohlížeče a nahrávám hlasovací budku...</h3>

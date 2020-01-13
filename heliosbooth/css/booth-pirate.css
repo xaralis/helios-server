@@ -1,0 +1,219 @@
+@import url(https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto+Condensed:300,700&display=swap&subset=latin-ext);
+html {
+  font-size: 16px;
+  font-family: "Roboto Condensed", "Helvetica", "Arial";
+  font-weight: 400;
+  color: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  font-family: "Bebas Neue", "Helvetica", "Arial";
+  font-weight: 400;
+  margin: 0.3em 0;
+}
+
+h2 {
+  font-size: 1.666em;
+  margin: 0.3em 0;
+}
+
+h3 {
+  font-size: 1.325em;
+  margin: 0.3em 0;
+}
+
+hr {
+  color: #efefef;
+  background-color: #efefef;
+  border-top: 1px #efefef solid;
+  margin: 0 -2rem;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+b, strong {
+  font-weight: 700 !important;
+}
+
+a {
+  color: #000;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#content {
+  flex-grow: 1;
+  padding: 1rem 2rem;
+}
+
+#banner {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  background: #333;
+}
+#banner h2, #banner a {
+  color: #fff;
+}
+#banner .banner-main {
+  flex-grow: 1;
+}
+
+#header {
+  margin: 1rem 0;
+}
+@media (min-width: 768px) {
+  #header {
+    margin: 2rem 0 4rem;
+  }
+}
+#header h1 {
+  margin: 0;
+}
+
+#footer {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+#footer .election-fingerprint {
+  flex-grow: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#footer .election-help {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  #footer {
+    flex-direction: row;
+  }
+  #footer .election-fingerprint,
+#footer .election-help {
+    text-align: left;
+  }
+}
+
+.button {
+  border: 0;
+  width: 100%;
+  display: inline-block;
+  background-color: #777;
+  padding: 1rem 3rem;
+  color: #fff;
+  font-size: 1.5rem !important;
+  transition: background-color 0.3s ease-in-out;
+  cursor: pointer;
+  font-family: "Bebas Neue" !important;
+}
+.button:hover {
+  background-color: #333;
+}
+@media (min-width: 768px) {
+  .button {
+    width: auto;
+  }
+}
+.button-small {
+  padding: 0.5rem 1rem;
+  font-size: 1rem !important;
+}
+
+.buttonwrap {
+  text-align: center;
+  margin: 2rem 0;
+}
+@media (min-width: 768px) {
+  .buttonwrap {
+    margin: 4rem 0;
+  }
+}
+
+.voting-instructions ol li {
+  margin-bottom: 2rem;
+}
+.voting-instructions h3 {
+  margin-bottom: 0.5rem;
+}
+.voting-instructions p {
+  margin: 0;
+}
+
+#progress_div {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px #efefef solid;
+  margin: 0 -2rem 3rem;
+}
+#progress_div div {
+  background: #efefef;
+  padding: 1rem 1rem;
+}
+#progress_div div:not(:last-child) {
+  border-right: 1px #fff solid;
+}
+#progress_div div.selected {
+  font-weight: bold;
+  background: #333;
+  color: #fff;
+}
+.question-help {
+  color: #777;
+  margin: 0 0 1rem;
+}
+
+.seal-instructions {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.verify-question-item {
+  border: 1px #efefef solid;
+}
+.verify-question-item-header {
+  display: flex;
+  flex-direction: column;
+  background: #efefef;
+  padding: 1rem;
+}
+.verify-question-item-header-main {
+  flex-grow: 1;
+}
+.verify-question-item-header h4 {
+  margin: 0 0 0.5rem 0;
+}
+.verify-question-item-header .divider {
+  padding: 0 0.25rem;
+}
+@media (min-width: 768px) {
+  .verify-question-item-header {
+    flex-direction: row;
+  }
+  .verify-question-item-header h4 {
+    margin: 0;
+  }
+}
+.verify-question-item-details {
+  padding: 1rem;
+}
+.verify-question-item-details p {
+  margin-top: 0;
+}
+.verify-question-item-choices {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=booth-pirate.css.map */
